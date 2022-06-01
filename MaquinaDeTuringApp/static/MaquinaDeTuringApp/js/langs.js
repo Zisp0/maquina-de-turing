@@ -9,7 +9,8 @@ var es = {
     "ingles": "Inglés",
     "portugues": "Portugués",
     "atencion": "Atención:",
-    "validarAyB": "Por favor ingrese una cadena sobre a y b."
+    "validarAyB": "Por favor ingrese una cadena sobre a y b.",
+    "cadenaProcesada": "La cadena ha sido procesada con éxito."
 };
 
 var en = {
@@ -23,7 +24,8 @@ var en = {
     "ingles": "English",
     "portugues": "Portuguese",
     "atencion": "Attention:",
-    "validarAyB": "Please enter a string about a and b."
+    "validarAyB": "Please enter a string about a and b.",
+    "cadenaProcesada": "The string has been processed successfully."
 };
 
 var pt = {
@@ -38,6 +40,7 @@ var pt = {
     "portugues": "Português",
     "atencion": "Atenção:",
     "validarAyB": "Insira uma string sobre a e b.",
+    "cadenaProcesada": "A string foi processada com sucesso."
 };
 
 
@@ -75,4 +78,5 @@ function cambiarIdioma(lang) {
     $("#PT").text(lg.portugues)
     atencion = lg.atencion
     txValidarAyB = lg.validarAyB
+    cadenaProcess = lg.cadenaProcesada
 }

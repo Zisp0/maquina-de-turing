@@ -1,6 +1,7 @@
 const verificarAyB = /^(a*b*\s*)*$/
 var atencion = "Atención:"
 var txValidarAyB = "Por favor ingrese una cadena sobre a y b."
+var cadenaProcess = "La cadena ha sido procesada con éxito."
 
 $(function () {
     llenar()
@@ -98,6 +99,7 @@ var leidosMat = 0
 var leidosMov = 0
 var leidosEst = 0
 function cargar() {
+    pasillo = false
     regreso = false
     leidosMov = 0
     leidosMat = 0
@@ -149,6 +151,7 @@ function ejecutar() {
 
 var cambiosOut = []
 function mover(element) {
+    pasillo = true
     cambiosOut.push(setTimeout(() => {
         colorNodo(estados[leidosEst].substring(1, 2), estados[leidosEst + 1].substring(1, 2), inc-100)
         colorEnlace(estados[leidosEst].substring(1, 2), estados[++leidosEst].substring(1, 2), inc-100)
@@ -157,7 +160,20 @@ function mover(element) {
         } else {
             izquierda()
         }
+        setTimeout(() => {
+            pasillo = false
+        }, inc)
         leidosMov++
+        if(leidosMov == cambios.length){
+            setTimeout(() => {
+                Swal.fire({
+                    title: atencion,
+                    text: cadenaProcess,
+                    icon: 'success',
+                })
+                speak(cadenaProcess)
+            }, inc);
+        } 
     }, timeMove))
     timeMove += inc
 }
@@ -190,23 +206,25 @@ function pausar() {
     timeMove = 0
 }
 
+var pasillo = false
 function paso() {
-    if(leidosMat >= (mat.length / 2)){
-        regreso = true
-    }
-    console.log(regreso+" "+leidosMat+" "+mat.length)
-    if(leidosMat <= mat.length){
-        if(regreso){
-            cambiar(mat[leidosMat-1][0], mat[leidosMat-1][1])
-        }else{
-            cambiar(mat[leidosMat][0], mat[leidosMat][1])
+    if(!pasillo){
+        if(leidosMat >= (mat.length / 2)){
+            regreso = true
         }
+        if(leidosMat <= mat.length){
+            if(regreso){
+                cambiar(mat[leidosMat-1][0], mat[leidosMat-1][1])
+            }else{
+                cambiar(mat[leidosMat][0], mat[leidosMat][1])
+            }
+        }
+        if(leidosMov < cambios.length){
+            mover(cambios[leidosMov]) 
+        }
+        timeCamb = 0
+        timeMove = 0
     }
-    if(leidosMov < cambios.length){
-        mover(cambios[leidosMov]) 
-    }
-    timeCamb = 0
-    timeMove = 0
 }
 
 function deselect() {
