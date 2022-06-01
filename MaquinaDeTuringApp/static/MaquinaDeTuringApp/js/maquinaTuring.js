@@ -1,4 +1,5 @@
 const verificarAyB = /^(a*b*\s*)*$/
+//^[^\s](a*b*\s*)*[^\s]$
 var atencion = "Atención:"
 var txValidarAyB = "Por favor ingrese una cadena sobre a y b."
 var cadenaProcess = "La cadena ha sido procesada con éxito."
