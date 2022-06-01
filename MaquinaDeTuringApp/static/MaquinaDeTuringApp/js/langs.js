@@ -14,7 +14,7 @@ var es = {
 
 var en = {
     "titulo": "Turing machine",
-    "creditos": "By: César Torres y Faiber Hernández.",
+    "creditos": "By: César Torres and Faiber Hernández.",
     "expresion": "Expression to parse... ",
     "cargar": "Load",
     "velocidad": "Speed:",
